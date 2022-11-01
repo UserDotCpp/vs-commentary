@@ -1,0 +1,91 @@
+{
+  "name": "p2pcode",
+	"displayName": "dontCodeAlone",
+	"description": "P2P live code editor",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.66.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Other"
+	],
+	"activationEvents": [
+        "onCommand:p2pcode.linkStart",
+		"onLanguage:readingComents"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [{
+				"id": "coment-manager",
+				"title": "comentmanager",
+				"icon": "resources/icon2.png"
+			  }
+			]
+		},
+		"views": {
+			"coment-manager": [
+			  {
+				"id": "package-dependencies",
+				"name": "Dependencies"
+			  },
+			  {
+				"id": "package-outline",
+				"name": "Outline"
+			  }
+			]
+		  },
+
+		"capabilities": {
+			"hoverProvider": "true"
+		},
+		"commands": [
+		{
+			"command": "p2pcode.linkStart",
+			"title": "linkStart"
+		}
+	],
+	"languages": [
+		{
+			"id": "readingComents",
+			"extensions": [
+				".bpat",
+				".bscr",
+				".mpat",
+				".mscr"
+			],
+			"aliases": [
+				"readingComents",
+				"mscr"
+			],
+			"configuration": "./language-configuration.json"
+		}
+	]
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"grammars": [
+		{
+			"language": "readingComents",
+			"scopeName": "source.mscr",
+			"path": "./syntaxes/mscr.tmLanguague.json"
+		}
+	],
+	"devDependencies": {
+        "@types/vscode": "^1.66.0",
+        "@types/glob": "^7.2.0",
+        "@types/mocha": "^9.1.0",
+        "@types/node": "14.x",
+        "eslint": "^8.11.0",
+        "glob": "^7.2.0",
+        "mocha": "^9.2.2",
+        "typescript": "^4.5.5",
+		"js-yaml": "^3.12.1",
+        "@vscode/test-electron": "^2.1.3"
+    }
+
+}
